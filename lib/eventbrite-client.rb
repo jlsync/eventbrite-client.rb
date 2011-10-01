@@ -31,7 +31,7 @@ class EventbriteClient
   def method_request( method, params )
     #merge auth params into our request querystring
     querystring = @auth.merge( params.is_a?(Hash) ? params : {} )
-    resp = self.class.get("/#{@data_type}/#{method.to_s}",{query: querystring})
+    resp = self.class.get("/#{@data_type}/#{method.to_s}",{:query => querystring})
     if resp['error'] 
       raise RuntimeError, resp['error']['error_message'], caller[1..-1]
     end
